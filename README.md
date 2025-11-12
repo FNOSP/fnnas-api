@@ -1,20 +1,35 @@
 目前已经实现ws断开自动重连（会重新登录）
 
-快速入门：
+#### 快速入门
+> Linux、Macos设置环境变量
+```shell
+export fn_username=你的账号
+export fn_password=你的密码
+```
+
+> Windows设置环境变量
+```cmd
+set fn_username=你的账号
+set fn_password=你的密码
+```
+
+
+> 示例代码
 ```python
 import asyncio
 from sdk import FnOsClient
 from sdk.handlers import HandlerUserInfo
+import os
 
 
 async def main():
     # 启动飞牛连接
     client = FnOsClient(ping_interval=60)
-    await client.connect('ws://172.24.120.213:5666/websocket?type=main')
+    await client.connect('ws://127.0.0.1:5666/websocket?type=main')
     client.add_handler('user.info', HandlerUserInfo)
 
     try:
-        login_res = await client.login('dev', '8GMu~_u+nD1Rj3')
+        login_res = await client.login(os.getenv("fn_username"), os.getenv('fn_password'))
         print("login_res", login_res)
         res = await client.user_info()
         print("user_info", res)
