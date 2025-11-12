@@ -47,6 +47,27 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
+#### 关闭日志输出
+
+> 默认日志输出为DEBUG等级，如果需要关闭日志输出，可以参考下面代码
+
+```python
+import asyncio
+import logging
+from sdk import FnOsClient
+import os
+
+async def main():
+    # 启动飞牛连接
+    client = FnOsClient(ping_interval=60, logger=logging.getLogger("null"))
+    await client.connect('ws://192.168.31.8:5666/websocket?type=main')
+    login_res = await client.login(os.getenv("fn_username"), os.getenv('fn_password'))
+    print(login_res)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
 SDK没有优化，很多异常没有处理，只是能用，不好用。大佬们封装吧
 
 #### TODO
@@ -58,6 +79,8 @@ SDK没有优化，很多异常没有处理，只是能用，不好用。大佬�
  - [x] 文件列表
  - [x] 文件上传
  - [x] 端口修改
+ - [x] 磁盘信息
+ - [x] 搜索文件
  - [ ] 文件下载
  - [ ] 文件双向同步 [我改了SMB方案，所以可能不更新了]
  - [ ] 其他接口
