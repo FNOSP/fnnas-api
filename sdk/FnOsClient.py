@@ -1,7 +1,4 @@
-import os.path
 from abc import ABC, abstractmethod
-
-from urllib3 import request
 import websockets
 import json
 import logging
