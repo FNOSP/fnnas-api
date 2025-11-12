@@ -1,5 +1,7 @@
 import os.path
 from abc import ABC, abstractmethod
+
+from urllib3 import request
 import websockets
 import json
 import logging
@@ -244,6 +246,7 @@ class MainClient(BaseClient):
         return response
 
     async def setting_port(self, force_https=False, redirect=True, http_port=5666, https_port=5667):
+        "修改端口"
         data = {
             "data": {
                 "force_https": force_https,  # 强制Https
@@ -259,6 +262,16 @@ class MainClient(BaseClient):
             }
         }
         response = await self.request('appcgi.network.gw.setting', **data)
+        return response
+
+    async def get_user_storage(self):
+        "获取磁盘信息"
+        data = {
+            "quotaInfo": True,
+            "spaceInfo": True,
+            "storInfo": True
+        }
+        response = await self.request("stor.getUserStorage", **data)
         return response
 
 
