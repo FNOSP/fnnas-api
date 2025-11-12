@@ -429,6 +429,13 @@ class FileClient(BaseClient):
                     self.file_update_queue.put_nowait((local_path_dict[name], f'{nas_path}/{name}', 'u'))
             await asyncio.sleep(interval)
 
+    async def file_search(self, key: str, path: list):
+        data = {
+            "key": key,
+            "path": path,
+        }
+        res = await self.request("appcgi.finder.fileSearch", **data)
+        return res
 
 class EmptyClient(BaseClient):
     async def _init(self):
