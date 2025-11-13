@@ -35,6 +35,29 @@
 }
  ```
 
+## 设置用户存储空间
+
+**请求示例**
+
+```json
+{"reqid":"reqid","set":[{"uid":1004,"stor":[{"id":1,"quota":-1}]}],"req":"stor.setUserStorage"}
+```
+
+ | 字段    | 类型     | 说明       |
+| ----- | ------ | ------------- |
+| `set` | array | 设置信息        |
+| `set[i].uid` | int | 用户id |
+| `set.stor[i]` | array | 存储空间信息 |
+| `set.stor[i].id` | int | 存储空间id |
+| `set.stor[i].quota` | int | 空间大小(字节) -1代表无限制 |
+
+**响应示例**
+
+```json
+{"result":"succ","reqid":"reqid"}
+```
+
+
  ## 获取硬盘信息
 
  - req：stor.calcSpace

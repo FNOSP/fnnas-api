@@ -12,6 +12,7 @@
 ## 模块一览
 - [通信协议说明](protocol.md)
 - [鉴权模块](modules/auth.md)
+- [系统信息](modules/sysinfo.md)
 - [用户管理](modules/user.md)
-- [系统设置](modules/system.md)
+- [存储空间](modules/stor.md)
 - [文件管理](modules/file.md)

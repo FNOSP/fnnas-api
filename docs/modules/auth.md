@@ -40,6 +40,8 @@
 
 ```json
 {
+    "req": "user.login",
+    "reqid": "reqid",
     "user": "username", // 用户名
     "password": "password", // 密码
     "deviceType": "Browser", // 设备类型
