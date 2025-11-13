@@ -146,7 +146,7 @@ class BaseClient(ABC):
     async def send_request(self, req, **kwargs):
         reqid = get_reqid(self.backId)
         data = {'req': req, 'reqid': reqid, **kwargs}
-        if req == 'user.login':
+        if req in ['user.login', 'user.add']:
             # 加密
             data = json.dumps(data, separators=(',', ':'))
             data = login_encrypt(data, self.pub, self.key, self.iv)
